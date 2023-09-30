@@ -1,0 +1,1 @@
+ES6 (ECMAScript 2015) introduced Promises as a native JavaScript feature to simplify asynchronous programming and provide a more structured way to handle asynchronous operations. Promises are a way to handle asynchronous operations and represent a value that may not be available yet but will be at some point in the future.
