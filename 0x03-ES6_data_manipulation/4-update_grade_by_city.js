@@ -4,7 +4,7 @@ export default function updateStudentGradeByCity(studentsList, city, newGrades) 
   // Map the filtered studen ts and update their grades
   const updatedStudents = studentsFiltered.map((student) => {
     // Locate the matching grade object in newGrades based on studentId
-    const gradeObject = newGrades.find((grade) => grade.studentId === student.Id);
+    const gradeObject = newGrades.find((grade) => grade.studentId === student.id);
     // Initialize grade as 'N/A'
     let grade = 'N/A';
     // If grade exists in newGrades
