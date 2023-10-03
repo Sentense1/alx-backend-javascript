@@ -1,7 +1,7 @@
 export default function createInt8TypedArray(length, position, value) {
   // Check if the position is within the valid range
   if (position < 0 || position >= length) {
-    throw new Error("Position outside range");
+    throw new Error('Position outside range');
   }
 
   // Create a new ArrayBuffer with the given length
