@@ -1,23 +1,28 @@
-// Define welcome message with a newline at the end
+// Welcome message to be displayed to the user
 const message1 = 'Welcome to Holberton School, what is your name?\n';
-// Define closing message
-const message2 = 'This important software is now closing';
+// Closing message to be displayed after user input
+const message2 = 'This important software is now closing\n';
 
-// Import the 'readline' module
-const readline = require('readline');
+// Write the welcome message to the standard output (console)
+process.stdout.write(message1);
 
-// Create an interface to read input from the user
-const reader = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
+// Listen for the 'readable' event on the standard input (keyboard)
+process.stdin.on('readable', () => {
+  // Read data from the standard input
+  const name_ = process.stdin.read();
+
+  // Check if data is not null (i.e., user entered something)
+  if (name_ !== null) {
+    // Write a message with the user's name to the standard output
+    process.stdout.write(`Your name is: ${name_}`);
+  }
 });
 
-// Get user input
-reader.question(message1, (name) => {
-  // Log the user's name
-  console.log('Your name is: ', name);
-  // Log the closing message
-  console.log(message2);
-  // Close the reader interface
-  reader.close();
+// Listen for the 'end' event on the standard input (keyboard)
+process.stdin.on('end', () => {
+  // Write the closing message to the standard output
+  process.stdout.write(message2);
+
+  // Exit the process
+  process.exit();
 });
