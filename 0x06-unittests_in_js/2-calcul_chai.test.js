@@ -1,95 +1,82 @@
-const chai = require('chai');
+var chai = require('chai');
+const calculateNumber = require('./2-calcul_chai');
 
-const expect = chai.expect;
-
-const calculateNumber = require('./2-calcul');
-
-describe('Tests calculateNumbers function when type is SUM', function () {
-  it('should round numbers and return their sum', function () {
-    const output = calculateNumber('SUM', 23.3, 33.3);
-    expect(output).to.equal(56);
+describe('calculateNumber', function () {
+  describe('SUM no Round', function () {
+    it('should return 5', function () {
+      chai.expect(calculateNumber('SUM', 1, 4)).to.equal(5);
+    });
   });
 
-  it('should handle negative numbers', function () {
-    const output = calculateNumber('SUM', -23.3, -33.3);
-    expect(output).to.equal(-56);
+  describe('SUM first round', function () {
+    it('should return 6', function () {
+      chai.expect(calculateNumber('SUM', 2.4, 4)).to.equal(6);
+    });
   });
 
-  it('should work with zero', function () {
-    const output = calculateNumber('SUM', 0, 0);
-    expect(output).to.equal(0);
+  describe('SUM second round ', function () {
+    it('should return 6', function () {
+      chai.expect(calculateNumber('SUM', 4, 2.4)).to.equal(6);
+    });
   });
 
-  it('it should return the sum of an integer and a float', function () {
-    const output = calculateNumber('SUM', 23, 45.8);
-    expect(output).to.equal(69);
+  describe('SUM both round', function () {
+    it('should return 6', function () {
+      chai.expect(calculateNumber('SUM', 1.4, 4.5)).to.equal(6);
+    });
   });
-  it('it should handle two floats and an integer', function () {
-    const output = calculateNumber('SUM', (2.5, 4.5), 4);
-    expect(output).to.equal(9);
+
+  describe('SUBTRACT no round', function () {
+    it('should return 2', function () {
+      chai.expect(calculateNumber('SUBTRACT', 5, 3)).to.equal(2);
+    });
   });
-  it('it shouild handle two integers', function () {
-    const output = calculateNumber('SUM', 12, 12);
-    expect(output).to.not.equal(56);
+
+  describe('SUBTRACT first round', function () {
+    it('should return -3', function () {
+      chai.expect(calculateNumber('SUBTRACT', 2, 4.5)).to.equal(-3);
+    });
+  });
+
+  describe('SUBTRACT second round', function () {
+    it('should return 3', function () {
+      chai.expect(calculateNumber('SUBTRACT', 4.5, 2)).to.equal(3);
+    });
+  });
+
+  describe('SUBTRACT both round', function () {
+    it('should return -4', function () {
+      chai.expect(calculateNumber('SUBTRACT', 1.4, 4.5)).to.equal(-4);
+    });
+  });
+
+  describe('DIVIDE no round', function () {
+    it('should return 2', function () {
+      chai.expect(calculateNumber('DIVIDE', 8, 4)).to.equal(2);
+    });
+  });
+
+  describe('DIVIDE first round', function () {
+    it('should return 5', function () {
+      chai.expect(calculateNumber('DIVIDE', 9.5, 2)).to.equal(5);
+    });
+  });
+
+  describe('DIVIDE second round', function () {
+    it('should return 0.2', function () {
+      chai.expect(calculateNumber('DIVIDE', 2, 9.5)).to.equal(0.2);
+    });
+  });
+
+  describe('DIVIDE both round', function () {
+    it('should return 0.2', function () {
+      chai.expect(calculateNumber('DIVIDE', 1.4, 4.5)).to.equal(0.2);
+    });
+  });
+
+  describe('DIVIDE Error', function () {
+    it('should return Error', function () {
+      chai.expect(calculateNumber('DIVIDE', 1.4, 0)).to.equal('Error');
+    });
   });
 });
-
-describe('Tests calculateNumbers function when type is SUBTRACT', function () {
-    it('should round numbers and return their difference', function () {
-      const output = calculateNumber('SUBTRACT', 23.3, 33.3);
-      expect(output).to.equal(-10);
-    });
-  
-    it('should handle negative numbers', function () {
-      const output = calculateNumber('SUBTRACT', -23.3, -33.3);
-      expect(output).to.equal(10);
-    });
-  
-    it('should work with zero', function () {
-      const output = calculateNumber('SUBTRACT', 0, 0);
-      expect(output).to.equal(0);
-    });
-  
-    it('it should return the difference of an integer and a float', function () {
-      const output = calculateNumber('SUBTRACT', 23, 45.8);
-      expect(output).to.equal(-23);
-    });
-    it('it should handle two floats and an integer', function () {
-      const output = calculateNumber('SUBTRACT', (2.5, 4.5), 4);
-      expect(output).to.equal(1);
-    });
-    it('it shouild handle two integers', function () {
-      const output = calculateNumber('SUBTRACT', 12, 12);
-      expect(output).to.not.equal(56);
-    });
-  });
-
-  describe('Tests calculateNumbers function when type is DIVIDE', function () {
-    it('should round numbers and return their division', function () {
-      const output = calculateNumber('DIVIDE', 23.3, 33.3);
-      expect(output).to.equal(0.696969696969697)
-    });
-  
-    it('should handle negative numbers', function () {
-      const output = calculateNumber('DIVIDE', -5, -1);
-      expect(output).to.equal(5);
-    });
-  
-    it('should work with zero', function () {
-      const output = calculateNumber('DIVIDE', 0, 0);
-      expect(output).to.equal('Error');
-    });
-  
-    it('it should return the division of an integer and a float', function () {
-      const output = calculateNumber('DIVIDE',46, 23);
-      expect(output).to.equal(2);
-    });
-    it('it should handle two floats and an integer', function () {
-      const output = calculateNumber('DIVIDE', (2.5, 4.5), 5);
-      expect(output).to.equal(1);
-    });
-    it('it shouild handle two integers', function () {
-      const output = calculateNumber('DIVIDE', 12, 12);
-      expect(output).to.not.equal(56);
-    });
-  });
