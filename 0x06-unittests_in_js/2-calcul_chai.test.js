@@ -2,7 +2,7 @@ const chai = require('chai');
 
 const expect = chai.expect;
 
-const calculateNumber = require('./1-calcul');
+const calculateNumber = require('./2-calcul');
 
 describe('Tests calculateNumbers function when type is SUM', function () {
   it('should round numbers and return their sum', function () {
