@@ -1,0 +1,12 @@
+open package.json
+modify the key 'test' to ...
+
+"test": {
+      "testMatch": ["**/*.test.js"]
+    },
+
+save and exit
+
+on the terminal, run
+
+$ npx jest tests/testFile.js
