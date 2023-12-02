@@ -1,4 +1,4 @@
-import handleProfileSignup from './6-final-user';
+import handleProfileSignup from '../6-final-user';
 
 test("handleProfileSignup returns the right array", async () => {
     const queue = await handleProfileSignup('John', 'Doe', 'Gerald.jpg');
