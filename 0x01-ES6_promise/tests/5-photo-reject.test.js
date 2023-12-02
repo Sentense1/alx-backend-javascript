@@ -1,4 +1,4 @@
-import uploadPhoto from './5-photo-reject';
+import uploadPhoto from '../5-photo-reject';
 
 test("uploadPhoto rejects correctly", () => {
     const successResponse = uploadPhoto('guillaume.jpg');
