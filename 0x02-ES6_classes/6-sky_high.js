@@ -23,7 +23,8 @@ export default class SkyBuilding extends Building {
     this._floors = Number(floors);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   evacuationWarningMessage() {
-    // return `Evacuate slowly the ${this._floors} floors`;
+    return `Evacuate slowly the ${this._floors} floors`;
   }
 }
