@@ -9,12 +9,12 @@ export default class HolbertonClass {
   }
 
   // eslint-disable-next-line consistent-return
-  // [Symbol.toPrimitive](value) {
-  //   if (value === 'number') {
-  //     return this._size;
-  //   }
-  //   if (value === 'string') {
-  //     return this._location;
-  //   }
-  // }
+  [Symbol.toPrimitive](value) {
+    if (value === 'number') {
+      return this._size;
+    }
+    if (value === 'string') {
+      return this._location;
+    }
+  }
 }
