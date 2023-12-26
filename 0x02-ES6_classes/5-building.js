@@ -1,5 +1,8 @@
 export default class Building {
   constructor(sqft) {
+    if (new.target !== Building && new.target.prototype.evacuationWarningMessage === undefined) {
+      throw new Error('Class extending Building must override evacuationWarningMessage');
+    }
     this._sqft = sqft;
   }
 
@@ -18,10 +21,5 @@ export default class Building {
       throw new Error('sqft must be a finite number');
     }
     this._sqft = Number(sqft);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  evacuationWarningMessage() {
-    throw new Error('Class extending Building must override evacuationWarningMessage');
   }
 }
