@@ -10,3 +10,7 @@ save and exit
 on the terminal, run
 
 $ npx jest tests/testFile.js
+
+or
+
+$ npx jest
