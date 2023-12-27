@@ -35,9 +35,9 @@ class StudentHolberton {
     return this._holbertonClass;
   }
 
-  // fullStudentDescription() {
-  //   return `${this._firstName} ${this._lastName} - ${this._holbertonClass.year} - ${this._holbertonClass.location}`;
-  // }
+  fullStudentDescription() {
+    return `${this._firstName} ${this._lastName} - ${this._holbertonClass.year} - ${this._holbertonClass.location}`;
+  }
 }
 
 const student1 = new StudentHolberton('Guillaume', 'Salva', class2020);
