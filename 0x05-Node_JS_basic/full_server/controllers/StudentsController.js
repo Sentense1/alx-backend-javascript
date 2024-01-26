@@ -14,11 +14,11 @@ class StudentsController {
 
           students.push(msg);
         }
-	response.status(200).send(`${students.join('\n')}`);
+        response.status(200).send(`${students.join('\n')}`);
       })
       .catch(() => {
         response.send(500, 'Cannot load the database');
-	response.status(500).send('Cannot load the database');
+        response.status(500).send('Cannot load the database');
       });
   }
 
@@ -32,7 +32,7 @@ class StudentsController {
         .then((fields) => {
           const students = fields[major];
 
-	  response.status(200).send(`List: ${students.join(', ')}`);
+          response.status(200).send(`List: ${students.join(', ')}`);
         })
         .catch(() => response.status(500).send('Cannot load the database'));
     }
