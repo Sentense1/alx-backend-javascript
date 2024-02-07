@@ -33,7 +33,6 @@ async function countStudents(Path) {
       console.log(msg2);
       console.log(msg3);
       resolve(msg);
-      return;
     });
   });
 }
