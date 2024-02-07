@@ -1,50 +1,52 @@
 const fs = require('fs');
+const path = require('path');
 
-function countStudents(path) {
+async function countStudents(Path) {
   return new Promise((resolve, reject) => {
-    fs.readFile(path, 'utf8', (err, data) => {
-      if (err) {
-        reject(Error('Cannot load the database'));
+    fs.readFile(path.join(Path), 'utf-8', (error, data) => {
+      if (error || !fs.existsSync(path.join(Path))) {
+        reject(new Error('Cannot load the database'));
         return;
       }
-      const response = [];
-      let msg;
 
-      const content = data.toString().split('\n');
+      const fileData = data.split('\n').filter((line) => line !== '');
 
-      let students = content.filter((item) => item);
+      const csStudents = fileData.filter((line) => {
+        const elements = line.split(',');
+        return elements.length >= 4 && elements[3].trim() === 'CS';
+      });
 
-      students = students.map((item) => item.split(','));
+      const sweStudents = fileData.filter((line) => line.split(',')[3].trim() === 'SWE');
 
-      const NUMBER_OF_STUDENTS = students.length ? students.length - 1 : 0;
-      msg = `Number of students: ${NUMBER_OF_STUDENTS}`;
-      console.log(msg);
+      const csFirstN = csStudents.map((line) => line.split(',')[0].trim()).join(', ');
+      const sweFirstN = sweStudents.map((line) => line.split(',')[0].trim()).join(', ');
 
-      response.push(msg);
+      const studentNumber = fileData.length - 1;
+      const csNumber = csStudents.length;
+      const sweNumber = sweStudents.length;
 
-      const fields = {};
-      for (const i in students) {
-        if (i !== 0) {
-          if (!fields[students[i][3]]) fields[students[i][3]] = [];
-
-          fields[students[i][3]].push(students[i][0]);
-        }
-      }
-
-      delete fields.field;
-
-      for (const key of Object.keys(fields)) {
-        msg = `Number of students in ${key}: ${
-          fields[key].length
-        }. List: ${fields[key].join(', ')}`;
-
-        console.log(msg);
-
-        response.push(msg);
-      }
-      resolve(response);
+      const msg1 = `Number of students: ${studentNumber}`;
+      const msg2 = `Number of students in CS: ${csNumber}. List: ${csFirstN}`;
+      const msg3 = `Number of students in SWE: ${sweNumber}. List: ${sweFirstN}`;
+      const msg = `${msg1}\n${msg2}\n${msg3}`;
+      console.log(msg1);
+      console.log(msg2);
+      console.log(msg3);
+      resolve(msg);
+      return;
     });
   });
+}
+
+if (require.main === module) {
+  countStudents('database.csv')
+    .then(() => {
+      console.log('Done!');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  console.log('After!');
 }
 
 module.exports = countStudents;
